@@ -1,11 +1,18 @@
 window.addEventListener('load', function() {
 	//stran nalozena
+	var potrdi=function() {
+		var uporabnik = document.querySelector("#uporabnisko_ime").value
+		document.querySelector("#uporabnik").innerHTML=uporabnik;
+		document.querySelector(".pokrivalo").style.visibility="hidden";
+	}
+	
+	document.querySelector("#prijavniGumb").addEventListener("click", potrdi);
 		
 	//Posodobi opomnike
 	var posodobiOpomnike = function() {
 		var opomniki = document.querySelectorAll(".opomnik");
 		
-		for (i = 0; i < opomniki.length; i++) {
+		for (var i = 0; i < opomniki.length; i++) {
 			var opomnik = opomniki[i];
 			var casovnik = opomnik.querySelector("span");
 			var cas = parseInt(casovnik.innerHTML);
@@ -13,6 +20,11 @@ window.addEventListener('load', function() {
 			//TODO: 
 			// - če je čas enak 0, izpiši opozorilo "Opomnik!\n\nZadolžitev NAZIV_OPOMNIK je potekla!"
 			// - sicer zmanjšaj čas za 1 in nastavi novo vrednost v časovniku
+			if(cas==0) console.log("Opomnik!\n\nZadolžitev NAZIV_OPOMNIK je potekla!");
+			else {
+				cas--;
+				
+			}
 		}
 	}
 	setInterval(posodobiOpomnike, 1000);
